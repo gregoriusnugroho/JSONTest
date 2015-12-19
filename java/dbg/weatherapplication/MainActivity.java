@@ -1,12 +1,15 @@
 package dbg.weatherapplication;
 
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView cityText, condDescr, temp, press, windSpeed, windDeg, hum;
     private ImageView imgView;
     private EditText countryinput,cityinput;
+    private Button search;
     String city;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +50,10 @@ public class MainActivity extends AppCompatActivity {
         windSpeed = (TextView) findViewById(R.id.windSpeed);
         windDeg = (TextView) findViewById(R.id.windDeg);
         imgView = (ImageView) findViewById(R.id.condIcon);
-        cityinput = (EditText) findViewById(R.id.citynameinput);
-        countryinput = (EditText) findViewById(R.id.CountryNameInput);
+        search = (Button) findViewById(R.id.buttonsearch);
+        city = "London,UK";
+        JSONWeatherTask task = new JSONWeatherTask();
+        task.execute(new String[]{city});
 
 
 
@@ -55,13 +61,21 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void clickedbutton(View view) {
+try{
 
+
+        cityinput = (EditText) findViewById(R.id.citynameinput);
+        countryinput = (EditText) findViewById(R.id.CountryNameInput);
         String citylocation,countrylocation;
         citylocation = cityinput.getText().toString();
         countrylocation = countryinput.getText().toString();
-        city = citylocation + ","+countrylocation;
+        city = citylocation.toString() + ","+countrylocation.toString();
         JSONWeatherTask task = new JSONWeatherTask();
         task.execute(new String[]{city});
+}catch (NullPointerException e)
+{
+    e.printStackTrace();
+}
     }
 
 
