@@ -124,7 +124,7 @@
             android:layout_below="@id/citynameinput"
             android:layout_centerHorizontal="true"
             android:id="@+id/buttonsearch"
-            android:onClick=""/>
+            android:onClick="clickedbutton"/>
     </RelativeLayout>
 
 </RelativeLayout>
